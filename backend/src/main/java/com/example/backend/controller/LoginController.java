@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
@@ -20,7 +21,7 @@ public class LoginController {
     @CrossOrigin
     @PostMapping(value="api/login")
     @ResponseBody
-    public Result login(@ResponseBody User requestUser){
+    public Result login(@RequestBody User requestUser){
         System.out.println("Login method");
         String username = requestUser.getUsername();
         System.out.println("Password: " + requestUser.getPassword());
