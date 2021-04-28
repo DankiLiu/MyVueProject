@@ -18,16 +18,29 @@ import java.util.Objects;
 @Controller
 public class LoginController {
 
+    @Autowired
+    UserService userService;
+
     @CrossOrigin
     @PostMapping(value="api/login")
     @ResponseBody
     public Result login(@RequestBody User requestUser){
-        System.out.println("Login method");
         String username = requestUser.getUsername();
-        System.out.println("Password: " + requestUser.getPassword());
-        System.out.println("Username: " + username);
         username = HtmlUtils.htmlEscape(username);
+        System.out.println("username is " + username);
+        System.out.println("password is " + requestUser.getPassword());
 
+        User user = userService.get(username, requestUser.getPassword());
+
+        if(null == user){
+            System.out.println("user does not exist");
+            return new Result(400);
+            }
+        else{
+            System.out.println("user does exist");
+            return new Result(200);
+        }
+        /*
         if (!Objects.equals("admin", username) || !Objects.equals("123456", requestUser.getPassword()))
         {
             return new Result(400);
@@ -35,5 +48,6 @@ public class LoginController {
         else {
           return new Result(200);
         }
+        */
     }
 }

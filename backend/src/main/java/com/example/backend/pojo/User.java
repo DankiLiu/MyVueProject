@@ -26,6 +26,7 @@ public class User {
     }
 
     public String getUsername() {
+        System.out.println("User -> Get username from database" + username);
         return username;
     }
 
@@ -34,6 +35,7 @@ public class User {
     }
 
     public String getPassword() {
+        System.out.println("User -> Get password from database" + password);
         return password;
     }
 
