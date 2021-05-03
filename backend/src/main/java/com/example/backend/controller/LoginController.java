@@ -32,11 +32,12 @@ public class LoginController {
         User user = userService.get(username, requestUser.getPassword());
 
         if(null == user){
-            System.out.println("user does not exist");
+            System.out.println("User does not exist, return code 400");
             return new Result(400);
             }
         else{
             session.setAttribute("user", user);
+            System.out.println("Found user, return code 200");
             return new Result(200);
         }
     }

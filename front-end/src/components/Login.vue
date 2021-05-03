@@ -41,7 +41,11 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
-            this.$router.replace({path: '/index'})
+            console.log('recieve success code 200')
+            this.$store.commit('login', this.loginForm)
+            var path = this.$route.query.redirect
+            console.log('redirecting')
+            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
           }
         })
         .catch(failResponse => {
